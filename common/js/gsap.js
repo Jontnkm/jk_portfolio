@@ -146,39 +146,65 @@ const showDemo = () => {
 
         mm.add({ isDesktop: "(min-width: 1024px)", isMobile: "(max-width: 1023px)" }, (context) => {
             let { isDesktop } = context.conditions;
+            const winW = window.innerWidth;
+
             let xStart = () => {
-                const winW = window.innerWidth;
-                const isMobile = winW < 1024;
-                
-                // 모바일일 때는 화면의 절반(0.5) 정도만 밖에서 시작, 데스크탑은 기존대로 혹은 더 크게
-                const moveDistance = isMobile ? winW * 0.5 : winW * 1.0;
                 const txt = w.textContent;
-                if (txt.includes("Project Archive")) return isDesktop ? winW * -0.2 : winW * -0.1;
-                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.2 : winW * 1.0;
-                if (txt.includes("Crafting Principled")) return isDesktop ? winW * 1.9 : winW * 0.7;
-                if (txt.includes("UI through Technical")) return isDesktop ? winW * -0.1 : winW * -0.3;
-                if (txt.includes("Integrity and User-")) return isDesktop ? winW * 0.8 : winW * 0.6;
-                if (txt.includes("Centric Design")) return isDesktop ? winW * -0.5 : winW * -0.2;
-                return (index % 2 === 0) ? -moveDistance : moveDistance;
+                // [1. PC 환경] 기존 수치 그대로 유지하여 역동성 확보
+                if (isDesktop) {
+                    if (txt.includes("Project Archive")) return winW * -0.2;
+                    if (txt.includes("Digital Experiences")) return winW * 0.2;
+                    if (txt.includes("Crafting Principled")) return winW * 0;
+                    if (txt.includes("UI through Technical")) return winW * -0.3;
+                    if (txt.includes("Integrity and User-")) return winW * -0.2;
+                    if (txt.includes("Centric Design")) return winW * -0.5;
+                    return (index % 2) ? winW : (w.scrollWidth * -1);
+                } 
+                // [2. 모바일 환경] 방향(지그재그)은 유지하되 수치는 화면 안으로 제한
+                else {
+                    // 홀수/짝수 인덱스에 따라 왼쪽(-), 오른쪽(+) 번갈아가며 시작
+                    const moveDist = winW * 0.6; // 화면 너비의 60% 정도만 밖에서 시작
+                    if (txt.includes("Project Archive")) return winW * 0.1;
+                    if (txt.includes("Digital Experiences")) return winW * -0.1;
+                    if (txt.includes("Crafting Principled")) return winW * 0.1;
+                    if (txt.includes("UI through Technical")) return winW * -0.1;
+                    if (txt.includes("Integrity and User-")) return winW * 0.1;
+                    if (txt.includes("Centric Design")) return winW * -0.1;
+                    return (index % 2) ? moveDist : -moveDist;
+                }
             };
 
             let xEnd = () => {
-                const winW = window.innerWidth;
                 const txt = w.textContent;
-                if (txt.includes("Project Archive")) return isDesktop ? winW * 0.1 : winW * 0.05;
-                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.1 : winW * 0.1;
-                if (txt.includes("Crafting Principled")) return isDesktop ? winW * 0.1 : winW * 0;
-                if (txt.includes("UI through Technical")) return isDesktop ? winW * 0.1 : winW * 0;
-                if (txt.includes("Integrity and User-")) return isDesktop ? winW * -0.05 : winW * 0;
-                if (txt.includes("Centric Design")) return isDesktop ? winW * 0.4 : winW * 0.1;
-                return -100;
+                // [1. PC 환경] 기존 목적지 유지
+                if (isDesktop) {
+                    if (txt.includes("Project Archive")) return winW * 0.1;
+                    if (txt.includes("Digital Experiences")) return winW * 0.1;
+                    if (txt.includes("Crafting Principled")) return winW * 0.1;
+                    if (txt.includes("UI through Technical")) return winW * 0.1;
+                    if (txt.includes("Integrity and User-")) return winW * -0.05;
+                    if (txt.includes("Centric Design")) return winW * 0.4;
+                    return (index % 2) ? (w.scrollWidth - winW + 600) * -1 : 600;
+                } 
+                // [2. 모바일 환경] 목적지는 거의 중앙(0) 근처로 고정하여 화면 이탈 방지
+                else {
+                    return 0; // 모바일에선 깔끔하게 제자리로 도착
+                }
             };
 
-            gsap.fromTo(w, { x: xStart, opacity: 0, skewX: isDesktop ? -40 : -10 }, {
+            gsap.fromTo(w, { 
+                x: xStart, 
+                opacity: 0, 
+                skewX: isDesktop ? -40 : -10 
+            }, {
                 x: xEnd,
                 opacity: 1,
-                skewX: 1,
-                scrollTrigger: { trigger: section, scrub: 1, invalidateOnRefresh: true }
+                skewX: 0,
+                scrollTrigger: { 
+                    trigger: section, 
+                    scrub: 1, 
+                    invalidateOnRefresh: true 
+                }
             });
         });
     });
