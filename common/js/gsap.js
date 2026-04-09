@@ -170,7 +170,7 @@ const showDemo = () => {
                     if (txt.includes("UI through Technical")) return winW * -0.1;
                     if (txt.includes("Integrity and User-")) return winW * 0.1;
                     if (txt.includes("Centric Design")) return winW * -0.1;
-                    return (index % 2) ? moveDist : -moveDist;
+                    return 0;
                 }
             };
 
@@ -192,13 +192,16 @@ const showDemo = () => {
                 }
             };
 
+            // 섹션별 텍스트 애니메이션 부분 수정
             gsap.fromTo(w, { 
                 x: xStart, 
                 opacity: 0, 
-                skewX: isDesktop ? -40 : -10 
+                // [수정] 모바일일 때는 뒤틀림(skewX)을 0으로 설정
+                skewX: isDesktop ? -40 : 0 
             }, {
                 x: xEnd,
                 opacity: 1,
+                // [수정] 목적지에서도 뒤틀림을 0으로 고정
                 skewX: 0,
                 scrollTrigger: { 
                     trigger: section, 
@@ -217,12 +220,17 @@ const showDemo = () => {
         gsap.to(follower, { x: e.clientX - 24, y: e.clientY - 24, duration: 0.3 });
     });
 
-    // 갤러리 리빌 효과 (이미지가 아래에서 위로 나타나는 효과)
+    // 갤러리 리빌 효과 (모바일에서는 애니메이션 없이 고정)
     gsap.utils.toArray('.gallery li').forEach((li) => {
+        // 1. 모바일(터치 디바이스)인 경우 즉시 reveal 클래스 추가 후 종료
+        if (ScrollTrigger.isTouch) {
+            li.classList.add('reveal');
+            return; 
+        }
+
+        // 2. PC(데스크탑) 환경에서만 기존 스크롤 트리거 작동
         ScrollTrigger.create({
             trigger: li,
-            // [수정] 'top 95%' 보다 더 늦게, 화면 중간쯤('top 70%') 왔을 때 
-            // 애니메이션이 시작되게 하면 사용자가 놓칠 확률이 줄어듭니다.
             start: "top 70%", 
             onEnter: () => li.classList.add('reveal'),
             once: true
