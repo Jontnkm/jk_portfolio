@@ -3,29 +3,43 @@
 @font-face {
 	font-family: "Pretendard GOV";
 	font-style: normal;
+	font-weight: 100;
+	src: url("../common/webfont/PretendardGOV-Thin.woff") format("font-woff"), url("../common/webfont/PretendardGOV-Thin.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-Thin.ttf") format("opentype");
+}
+/* 본고딕 Regular */
+@font-face {
+	font-family: "Pretendard GOV";
+	font-style: normal;
+	font-weight: 300;
+	src: url("../common/webfont/PretendardGOV-Light.woff") format("font-woff"), url("../common/webfont/PretendardGOV-Light.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-Light.ttf") format("opentype");
+}
+/* 본고딕 Regular */
+@font-face {
+	font-family: "Pretendard GOV";
+	font-style: normal;
 	font-weight: 400;
-	src: url("../../common/webfont/PretendardGOV-Regular.woff") format("font-woff"), url("../../common/webfont/PretendardGOV-Regular.woff2") format("font-woff2"), url("../../common/webfont/PretendardGOV-Regular.otf") format("opentype");
+	src: url("../common/webfont/PretendardGOV-Regular.woff") format("font-woff"), url("../common/webfont/PretendardGOV-Regular.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-Regular.ttf") format("opentype");
 }
 /* 본고딕 Medium */
 @font-face {
 	font-family: "Pretendard GOV";
 	font-style: normal;
 	font-weight: 500;
-	src: url("../../common/webfont/PretendardGOV-Medium.woff") format("font-woff"), url("../../common/webfont/PretendardGOV-Medium.woff2") format("font-woff2"), url("../../common/webfont/PretendardGOV-Medium.otf") format("opentype");
+	src: url("../common/webfont/PretendardGOV-Medium.woff") format("font-woff"), url("../common/webfont/PretendardGOV-Medium.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-Medium.ttf") format("opentype");
 }
 /* 본고딕 Bold */
 @font-face {
 	font-family: "Pretendard GOV";
 	font-style: normal;
 	font-weight: 600;
-	src: url("../../common/webfont/PretendardGOV-SemiBold.woff") format("font-woff"), url("../../common/webfont/PretendardGOV-SemiBold.woff2") format("font-woff2"), url("../../common/webfont/PretendardGOV-SemiBold.otf") format("opentype");
+	src: url("../common/webfont/PretendardGOV-SemiBold.woff") format("font-woff"), url("../common/webfont/PretendardGOV-SemiBold.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-SemiBold.ttf") format("opentype");
 }
 /* 본고딕 Bold */
 @font-face {
 	font-family: "Pretendard GOV";
 	font-style: normal;
 	font-weight: 700;
-	src: url("../../common/webfont/PretendardGOV-Bold.woff") format("font-woff"), url("../../common/webfont/PretendardGOV-Bold.woff2") format("font-woff2"), url("../../common/webfont/PretendardGOV-Bold.otf") format("opentype");
+	src: url("../common/webfont/PretendardGOV-Bold.woff") format("font-woff"), url("../common/webfont/PretendardGOV-Bold.otf") format("font-woff2"), url("../common/webfont/PretendardGOV-Bold.ttf") format("opentype");
 }
 html, body {
 	overflow-x: hidden;
@@ -292,13 +306,14 @@ label {
 	width: 100%;
 	position: relative;
 	font-size: 20px;
-	font-weight: 100;
-	color: #666;
-	font-weight: bold;
+	font-weight: 300;
+	color: #333;
+	font-weight: 400;
 	text-align: center;
 	position: relative;
 	z-index: 99;
 	line-height: 160%;
+	font-family: "Pretendard GOV" !important;
 }
 @media screen and (max-width: 767px) {
 	.introContents > .desc {
@@ -310,7 +325,7 @@ label {
 	display: block;
 	margin-bottom: 40px;
 	font-size: 40px;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 150%;
 	color: #000;
 }
@@ -320,7 +335,7 @@ label {
 	}
 }
 .introContents > .desc > span .bold {
-	font-weight: 600;
+	font-weight: 700;
 }
 .introContents > .desc > br {
 	display: block;
@@ -481,7 +496,7 @@ section {
 .allWrapper .gallery > ul.wrapper li {
 	position: relative;
 	flex-shrink: 0;
-	width: clamp(100%, 40vw, 500px);
+	width: clamp(300px, 40vw, 500px);
 	padding-right: 1rem;
 	overflow: hidden;
 	z-index: 99;
@@ -492,11 +507,12 @@ section {
 	display: block;
 	background: #fff;
 	position: relative;
-	width: clamp(100%, 40vw, 500px);
+	width: clamp(300px, 40vw, 500px);
 	height: 350px;
 }
 @media screen and (max-width: 767px) {
 	.allWrapper .gallery > ul.wrapper li > a {
+		width: 100% !important;
 		height: 150px;
 	}
 }
@@ -548,8 +564,18 @@ section {
 .allWrapper .gallery > ul.wrapper li.nfa img {
 	width: 200px;
 }
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery > ul.wrapper li {
+		width: 100% !important;
+	}
+}
 .allWrapper .gallery:not(.last) {
 	padding-bottom: 1rem;
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery:not(.last) {
+		padding-bottom: 0;
+	}
 }
 .allWrapper .textWrap {
 	position: relative;
