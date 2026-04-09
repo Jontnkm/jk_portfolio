@@ -284,6 +284,12 @@ label {
 	z-index: 99;
 	line-height: 160%;
 }
+@media screen and (max-width: 767px) {
+	.introContents > .desc {
+		font-size: 18px;
+		word-break: auto-phrase;
+	}
+}
 .introContents > .desc > span {
 	display: block;
 	margin-bottom: 40px;
@@ -292,8 +298,21 @@ label {
 	line-height: 150%;
 	color: #000;
 }
+@media screen and (max-width: 767px) {
+	.introContents > .desc > span {
+		font-size: 24px;
+	}
+}
 .introContents > .desc > span .bold {
 	font-weight: 600;
+}
+.introContents > .desc > br {
+	display: block;
+}
+@media screen and (max-width: 767px) {
+	.introContents > .desc > br {
+		display: none;
+	}
 }
 .introContents > ul {
 	display: flex;
@@ -303,6 +322,11 @@ label {
 	width: 100%;
 	gap: 40px;
 	margin-top: 100px;
+}
+@media screen and (max-width: 767px) {
+	.introContents > ul {
+		margin-top: 60px;
+	}
 }
 .introContents > ul > li {
 	width: 100%;
@@ -328,6 +352,27 @@ section {
 	display: block !important;
 }
 
+.cpright {
+	width: 100%;
+	position: relative;
+	padding-top: 200px;
+	padding-bottom: 100px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 150%;
+	text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+	.moBox {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+	}
+}
+
 /*공통사용*/
 .df {
 	display: flex;
@@ -344,13 +389,14 @@ section {
 /*로딩*/
 .loader {
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	width: 100%;
+	height: 100%;
+	top: 50%;
+	left: 50%;
 	background: black;
 	color: white;
 	z-index: 9999;
+	transform: translate(-50%, -50%);
 }
 .loader > h1 {
 	font-size: 5rem;
@@ -369,12 +415,24 @@ section {
 	height: 100vh;
 }
 .allWrapper header > div > h1 {
-	font-size: 5rem;
+	font-size: 70px;
 	text-align: center;
 }
+@media screen and (max-width: 767px) {
+	.allWrapper header > div > h1 {
+		font-size: 50px;
+		line-height: 100%;
+	}
+}
 .allWrapper header > div > h2 {
-	font-size: 2rem;
+	font-size: 28px;
 	text-align: center;
+}
+@media screen and (max-width: 767px) {
+	.allWrapper header > div > h2 {
+		font-size: 20px;
+		margin-top: 40px;
+	}
 }
 .allWrapper {
 	/*갤러리*/
@@ -385,29 +443,46 @@ section {
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery {
+		margin-top: 30px;
+		margin-bottom: 40px;
+	}
+}
 .allWrapper .gallery > ul.wrapper {
 	padding-left: 1rem;
 	list-style: none;
 	display: flex;
 	gap: 50px;
 	opacity: 1 !important;
+	transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery > ul.wrapper {
+		gap: 5px;
+	}
 }
 .allWrapper .gallery > ul.wrapper li {
 	position: relative;
 	flex-shrink: 0;
-	width: clamp(250px, 40vw, 500px);
+	width: clamp(150px, 40vw, 500px);
 	padding-right: 1rem;
 	overflow: hidden;
 	z-index: 99;
+	transition: none !important;
+	will-change: transform, opacity;
 }
 .allWrapper .gallery > ul.wrapper li > a {
 	display: block;
 	background: #fff;
-	width: 100%;
-	height: 100%;
 	position: relative;
-	width: 500px;
-	height: 300px;
+	width: clamp(150px, 40vw, 500px);
+	height: 150px;
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery > ul.wrapper li > a {
+		height: 200px;
+	}
 }
 .allWrapper .gallery > ul.wrapper li > a img {
 	width: max-content;
@@ -415,6 +490,11 @@ section {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .gallery > ul.wrapper li > a img {
+		width: 150px;
+	}
 }
 .allWrapper .gallery > ul.wrapper li::before {
 	display: none;
@@ -435,6 +515,10 @@ section {
 	background: #000;
 	transform-origin: right;
 	transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.allWrapper .gallery > ul.wrapper li.reveal {
+	opacity: 1;
+	transform: translate3d(0, 0, 0) !important;
 }
 .allWrapper .gallery > ul.wrapper li.reveal::after {
 	transform: scaleX(0);

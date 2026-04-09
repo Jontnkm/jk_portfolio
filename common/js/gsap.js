@@ -148,26 +148,30 @@ const showDemo = () => {
             let { isDesktop } = context.conditions;
             let xStart = () => {
                 const winW = window.innerWidth;
+                const isMobile = winW < 1024;
+                
+                // 모바일일 때는 화면의 절반(0.5) 정도만 밖에서 시작, 데스크탑은 기존대로 혹은 더 크게
+                const moveDistance = isMobile ? winW * 0.5 : winW * 1.0;
                 const txt = w.textContent;
                 if (txt.includes("Project Archive")) return isDesktop ? winW * -0.2 : winW * -0.1;
-                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.2 : winW * -0.1;
+                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.2 : winW * 1.0;
                 if (txt.includes("Crafting Principled")) return isDesktop ? winW * 1.9 : winW * 0.7;
                 if (txt.includes("UI through Technical")) return isDesktop ? winW * -0.1 : winW * -0.3;
                 if (txt.includes("Integrity and User-")) return isDesktop ? winW * 0.8 : winW * 0.6;
                 if (txt.includes("Centric Design")) return isDesktop ? winW * -0.5 : winW * -0.2;
-                return (index % 2) ? winW : (w.scrollWidth * -1);
+                return (index % 2 === 0) ? -moveDistance : moveDistance;
             };
 
             let xEnd = () => {
                 const winW = window.innerWidth;
                 const txt = w.textContent;
                 if (txt.includes("Project Archive")) return isDesktop ? winW * 0.1 : winW * 0.05;
-                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.1 : winW * -0.1;
-                if (txt.includes("Crafting Principled")) return isDesktop ? winW * 0.1 : winW * -0.02;
-                if (txt.includes("UI through Technical")) return isDesktop ? winW * 0.1 : winW * 0.15;
-                if (txt.includes("Integrity and User-")) return isDesktop ? winW * -0.1 : winW * -0.1;
-                if (txt.includes("Centric Design")) return isDesktop ? winW * 0.4 : winW * 0.3;
-                return (index % 2) ? (w.scrollWidth - winW + 600) * -1 : 600;
+                if (txt.includes("Digital Experiences")) return isDesktop ? winW * 0.1 : winW * 0.1;
+                if (txt.includes("Crafting Principled")) return isDesktop ? winW * 0.1 : winW * 0;
+                if (txt.includes("UI through Technical")) return isDesktop ? winW * 0.1 : winW * 0;
+                if (txt.includes("Integrity and User-")) return isDesktop ? winW * -0.05 : winW * 0;
+                if (txt.includes("Centric Design")) return isDesktop ? winW * 0.4 : winW * 0.1;
+                return -100;
             };
 
             gsap.fromTo(w, { x: xStart, opacity: 0, skewX: isDesktop ? -40 : -10 }, {
@@ -191,9 +195,11 @@ const showDemo = () => {
     gsap.utils.toArray('.gallery li').forEach((li) => {
         ScrollTrigger.create({
             trigger: li,
-            start: "top 80%", // 요소가 화면 하단에서 20% 정도 올라왔을 때 실행
-            onEnter: () => li.classList.add('reveal'), // CSS의 .reveal 클래스 활성화
-            once: true // 한 번만 실행되도록 설정
+            // [수정] 'top 95%' 보다 더 늦게, 화면 중간쯤('top 70%') 왔을 때 
+            // 애니메이션이 시작되게 하면 사용자가 놓칠 확률이 줄어듭니다.
+            start: "top 70%", 
+            onEnter: () => li.classList.add('reveal'),
+            once: true
         });
     });
 
