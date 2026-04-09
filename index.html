@@ -1,0 +1,273 @@
+ <!-- Header -->
+ 
+
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- <meta name="format-detection" content="telephone=no"> -->
+
+	<!-- 캐싱방지 -->
+	<!-- 
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+	    <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT"> 
+    -->
+    
+	<!-- 모바일 상단,타이틀바,주소창 색변경(안드로이드에서 크롬,파폭,오페라,삼성브라우저만 가능) -->
+	<!-- <meta name="theme-color" content="#4285f4"> -->
+
+	<title>김태형_포트폴리오</title>
+	<!--Add for goole click2call issue-->
+	<meta name="format-detection" content="telephone=no, email=no, address=no">
+
+	<!-- <link rel="stylesheet" href="../common/css/swiper-bundle.min.css"> -->
+	<!-- <link rel="stylesheet" href="../common/css/tui-date-picker.css"> -->
+	<link rel="stylesheet" href="../common/css/style.css">
+	<!-- <link rel="icon" type="image/x-icon" href="../common/images/common/spowell_favicon.ico"> -->
+
+	<!-- AOS 라이브러리 불러오기-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+
+    <!--gsap-->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    
+	<script src="../common/js/imagesloaded.pkgd.min.js"></script>
+	<script src="../common/js/ScrollTrigger.min.js"></script>
+	<script src="../common/js/ScrollSmoother.min.js"></script>
+	<script src="../common/js/SplitText.min.js"></script>
+	
+	<script src="../common/js/gsap.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+	<script src="../common/js/jquery-3.4.1.min.js"></script>
+	<script src="../common/js/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+    <!--
+	
+		
+	
+    -->
+</head>
+<body>
+<div class="wrap">
+
+<!-- 레이아웃 -->
+<div class="lytLayout">
+    <div class="layoutArea">
+        <!-- 본문영역 -->
+        <div class="layoutContent">
+            <!-- Body -->
+            <!--cursor setting-->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!--loading area-->
+<div class="loader df aic jcc">
+  <div>
+    <h1 class="loadText">Loading</h1>
+    <h2 class="loader--text">0%</h2>
+  </div>
+</div>
+
+<!--contents-->
+<div class="allWrapper">
+  <canvas id="bgCanvas"></canvas>
+  <!--header-->
+  <header class="df aic jcc intro">
+    <div>
+      <h1>TAEHYEONG'S PORTFOLIO</h1>
+      <h2>안녕하세요. 웹 퍼블리셔 김태형입니다.</h2>
+    </div>
+  </header>
+
+  <!--introduction-->
+  <div class="introContents df aic jcc ">
+
+    <p class="desc" data-aos="slide-up" data-aos-duration="800">
+      <span>"<span class="bold">견고한 기술</span>로 웹 표준의 기준을 정의하며,<br/><span class="bold">모두를 위한 접근성</span>으로 사각지대를 없앱니다."</span>
+      
+      단순한 화면 구현을 넘어, 어떠한 복잡한 비즈니스 환경에서도 유연하고 견고하게 작동하는 UI 구조를 설계합니다.<br/>
+      수십 개의 공공 서비스 웹 접근성 인증을 완수했던 책임감과 프로젝트 리딩 능력을 바탕으로,<br/>
+      귀사의 디지털 플랫폼이 모든 사용자에게 평등하고 고도화된 경험을 제공하도록 기여하겠습니다.
+    </p>
+
+    <!-- <p class="desc">
+      Language : HTML5, CSS3, SCSS, JAVASCRIPT(ES6+)
+      Frameworks/Libraries : React, Thymeleaf, jQuery
+      Workflow & Tools: Figma, Git, SVN, Webpack/Gulp, Jira/Confluence
+    </p> -->
+
+    <ul  data-aos-duration="1200">
+      <li data-aos="flip-up" data-aos-duration="800">
+        <p class="title">01. LANGUAGES</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>SCSS</li>
+          <li>JavaScript(ES6+)</li>
+        </ul>
+      </li>
+
+      <li data-aos="flip-up" data-aos-duration="1500">
+        <p class="title">02. ARCHITECTURE</p>
+        <ul>
+          <li>React</li>
+          <li>Thymeleaf</li>
+          <li>jQuery</li>
+          <li>Gulp</li>
+        </ul>
+      </li>
+
+      <li data-aos="flip-up" data-aos-duration="2200">
+        <p class="title">03. COLLABORATION</p>
+        <ul>
+          <li>Figma</li>
+          <li>SVN</li>
+          <li>Git</li>
+          <li>Confluence</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!--portfolio List-->
+  <section class="textWrap start">
+    <div class="wrapper text">
+      Project Archive
+    </div>
+  </section>
+  <section class="textWrap ">
+    <div class="wrapper text">
+      Digital Experiences
+    </div>
+  </section>
+
+  <section class="gallery ">
+    <ul class="wrapper">
+      <li>
+        <!--한국마사회-->
+        <a href="https://www.kra.co.kr/main.do" target="_blank"><img src="../../common/images/pf/kra.svg"></a>
+      </li>
+      <li>
+        <!--렛츠런파크 서울-->
+        <a href="https://park.kra.co.kr/main/seoul" target="_blank"><img src="../../common/images/pf/letsrun01.png"></a>
+      </li>
+      <li>
+        <!--렛츠런파크 제주-->
+        <a href="https://park.kra.co.kr/main/jeju" target="_blank"><img src="../../common/images/pf/letsrun02.png"></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <ul class="wrapper">
+      <!--렛츠런파크 부산경남-->
+      <li>
+        <a href="https://park.kra.co.kr/main/busan" target="_blank"><img src="../../common/images/pf/letsrun03.png"></a>
+      </li>
+      <!--체육인복지지원-->
+      <li>
+        <a href="https://spowell.kspo.or.kr/" target="_blank"><img src="../../common/images/pf/spowell.svg"></a>
+      </li>
+      <!--btv 우리동네 광고-->
+      <li>
+        <a href="https://btvtownad.com/" target="_blank"><img src="../../common/images/pf/btv.png"></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <ul class="wrapper">
+      <!--바로크레디트-->
+      <li>
+        <a href="https://www.barocredit.com/" target="_blank"><img src="../../common/images/pf/baro.png"></a>
+      </li>
+      <!--대학입시포털 어디가-->
+      <li>
+        <a href="https://www.adiga.kr/" target="_blank"><img src="../../common/images/pf/adiga_logo.png"></a>
+      </li>
+      <!--국민체육진흥공단 - 체력100 -->
+      <li class="nfa">
+        <a href="https://nfa.kspo.or.kr/main.kspo" target="_blank"><img src="../../common/images/pf/nfa.png"></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <ul class="wrapper">
+      <!--국민체육진흥공단 - kspo포털 -->
+      <li>
+        <a href="https://kspo.or.kr/kspo/main/main.do" target="_blank"><img src="../../common/images/pf/kspo.gif"></a>
+      </li>
+      <!--국민체육진흥공단 - 스포츠강좌이용권 -->
+      <li>
+        <a href="https://svoucher.kspo.or.kr/main.do" target="_blank"><img src="../../common/images/pf/svoucher.png"></a>
+      </li>
+      <!--국민체육진흥공단 - 소마미술관 -->
+      <li>
+        <a href="https://soma.kspo.or.kr/main" target="_blank"><img src="../../common/images/pf/soma.png"></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="gallery">
+    <ul class="wrapper">
+      <!--국민체육진흥공단 - 체육지도자연수 -->
+      <li>
+        <a href="https://sqms.kspo.or.kr/index.kspo" target="_blank"><img src="../../common/images/pf/insports.png"></a>
+      </li>
+      <!--국민체육진흥공단 - 불법토토신고센터 -->
+      <li>
+        <a href="https://cleansports.kspo.or.kr/cleansports/main/main.do" target="_blank"><img src="../../common/images/pf/cleansports.png"></a>
+      </li>
+      <!--휴넷 모두의 코딩 -->
+      <li>
+        <a href="https://www.moducoding.com/" target="_blank"><img src="../../common/images/pf/modu.svg"></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="textWrap">
+    <div class="wrapper text">
+      Crafting Principled
+    </div>
+  </section>
+
+  <section class="textWrap">
+    <div class="wrapper text">
+      UI through Technical
+    </div>
+  </section>
+  <section class="textWrap end">
+    <div class="wrapper text">
+      Integrity and User-
+    </div>
+  </section>
+  <section class="textWrap">
+    <div class="wrapper text">
+      Centric Design.
+    </div>
+  </section>
+
+  <div style="padding-bottom:300px;"></div>
+</div>
+
+<script> 
+  AOS.init();
+</script>
+        </div>
+        <!-- //본문영역 -->
+    </div>
+</div>
+
+<!-- Bottom -->
+
+</div>
+
+</body>
+</html>
