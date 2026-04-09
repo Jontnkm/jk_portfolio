@@ -244,6 +244,11 @@ label {
 .cursor.invert {
 	background: #fff;
 }
+@media screen and (max-width: 767px) {
+	.cursor {
+		display: none;
+	}
+}
 
 .cursor-follower {
 	position: fixed;
@@ -259,6 +264,11 @@ label {
 }
 .cursor-follower.invert {
 	border-color: #fff;
+}
+@media screen and (max-width: 767px) {
+	.cursor-follower {
+		display: none;
+	}
 }
 
 .cursor-active {
