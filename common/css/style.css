@@ -471,7 +471,7 @@ a, a:visited {
 @media screen and (max-width: 1023px) {
 	.allWrapper .introContents > ul {
 		flex-flow: column;
-		margin: 50px auto 100px;
+		margin: 50px auto 0;
 	}
 }
 .allWrapper .introContents > ul > li {
@@ -530,6 +530,11 @@ a, a:visited {
 	width: 100%;
 	padding: 0 50px;
 }
+@media screen and (max-width: 767px) {
+	.pfTxtBox {
+		margin: 300px auto 50px;
+	}
+}
 .pfTxtBox .textWrap {
 	position: relative;
 	z-index: 99;
@@ -567,7 +572,7 @@ a, a:visited {
 	gap: 50px;
 	opacity: 1 !important;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: no wrap;
 	justify-content: center;
 	align-items: center;
 	max-width: 2500px;
