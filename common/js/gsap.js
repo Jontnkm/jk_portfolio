@@ -86,14 +86,14 @@ const initBgColorChange = () => {
 
     const changeTheme = (theme) => {
         // 사파리 대응을 위해 body에 직접 스타일 적용
-        gsap.to("body", { 
+        gsap.to(".bg-overlay", { 
             backgroundColor: theme.bgColor, 
             duration: 0.4, 
             overwrite: "auto",
             ease: "power2.inOut" 
         });
         
-        gsap.to("body", { backgroundColor: theme.bgColor, duration: 0.3 });
+        gsap.to(".bg-overlay", { backgroundColor: theme.bgColor, duration: 0.3 });
         gsap.to(".wrapper.text", { color: theme.textColor, duration: 0.3 });
         
         // 테마에 맞는 커서 색상으로 부드럽게 변경
@@ -104,9 +104,10 @@ const initBgColorChange = () => {
     scrollThemes.forEach((theme, index) => {
         ScrollTrigger.create({
             trigger: theme.trigger,
-            start: "top center",
-            end: "bottom center",
+            start: "top 60%",
+            end: "bottom 60%",
             fastScrollEnd: true,// 사파리 스크롤 버벅임 대응: fastScrollEnd 추가
+            anticipagePin: 1,
             onEnter: () => changeTheme(theme),
             onEnterBack: () => changeTheme(theme),
             onLeaveBack: () => {
