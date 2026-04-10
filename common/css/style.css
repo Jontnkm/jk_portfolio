@@ -401,7 +401,6 @@ a, a:visited {
 }
 .allWrapper .introContents {
 	width: 100%;
-	height: 100vh;
 	position: relative;
 	display: flex;
 	flex-flow: column;
@@ -526,14 +525,9 @@ a, a:visited {
 	justify-content: center;
 	align-items: center;
 	max-width: 2500px;
-	margin: 0 auto 50px;
+	margin: 200px auto 50px;
 	width: 100%;
 	padding: 0 50px;
-}
-@media screen and (max-width: 767px) {
-	.pfTxtBox {
-		margin: 300px auto 50px;
-	}
 }
 .pfTxtBox .textWrap {
 	position: relative;
