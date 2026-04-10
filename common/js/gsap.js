@@ -265,3 +265,15 @@ if (allImages.length > 0) {
 } else {
     showDemo();
 }
+
+window.addEventListener('scroll', function() {
+  const scrInfo = document.querySelector('.scrInfo');
+  
+  if (window.scrollY > 0) {
+    // 스크롤이 시작되면 hide 클래스 추가
+    scrInfo.classList.add('hide');
+  } else {
+    // 맨 위로 돌아오면 다시 표시 (선택 사항)
+    scrInfo.classList.remove('hide');
+  }
+});
