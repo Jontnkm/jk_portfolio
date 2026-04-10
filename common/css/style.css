@@ -401,8 +401,8 @@ a, a:visited {
 	}
 }
 .allWrapper header .scrInfo {
-	position: absolute;
-	bottom: 100px;
+	position: fixed;
+	bottom: 50px;
 	left: 50%;
 	transform: translateX(-50%);
 	transition: all 0.6s ease-in-out !important;
