@@ -216,38 +216,62 @@ label {
 	}
 }
 :root {
-	--prm1: #21409A;
-	--prm2: #2C99F2;
+	--prm1: #4e9815;
+	--prm2: #87cd33;
 	--prm3: #252F3E;
 	--snd1: #FFAC11;
 	--snd2: #D67D00;
 	--snd3: #EE3A3A;
-	--t1: #000000;
-	--t2: #666666;
-	--t3: #555555;
-	--t4: #888888;
-	--tbg1: #6E7584;
-	--tbg2: #848B9A;
-	--tbg3: #B9BDC6;
-	--l1: #EEEEEE;
-	--l2: #DDDDDD;
-	--lbg1: #DEE2EA;
-	--lbg2: #BFC5CF;
-	--bg1: #F5F6F8;
-	--bg2: #EFF1F5;
-	--bg3: #FFFFFF;
-	--bg4: #1f2835;
-	--bg5: #636d7b;
-	--bg6: #d7d9dc;
-	--bg7: #f5f9ff;
-	--bg8: #E6E8EC;
+	--b1: #000000;
+	--b2: #666666;
+	--lbg1: #dfdfdf;
+	--wht: #FFFFFF;
 }
 
+/*공통사용*/
+a, a:visited {
+	color: var(--prm1);
+	text-decoration: none;
+}
+
+.df {
+	display: flex;
+}
+
+.aic {
+	align-items: center;
+}
+
+.jcc {
+	justify-content: center;
+}
+
+/*배경효과용 부모영역 세팅*/
+.allWrapper, .intro, .introContents, section {
+	background-color: transparent !important;
+}
+
+/*배경 동그라미 효과*/
+.circle {
+	position: absolute;
+	top: -1000px;
+	right: 300px;
+	width: 20px;
+	height: 20px;
+	border-radius: 40%;
+	opacity: 0;
+	margin: -19px auto;
+	transition: transform 1s cubic-bezier(0.14, 0.15, 0.13, 0.99);
+	z-index: 9;
+}
+
+/*애니메이션 초기 세팅*/
 [data-aos] {
 	position: relative;
-	z-index: 1; /* 커서(10000)보다 현저히 낮은 값 유지 */
+	z-index: 1;
 }
 
+/*커서 효과*/
 .cursor {
 	position: fixed;
 	border-radius: 50%;
@@ -256,12 +280,12 @@ label {
 	transition: transform 0.1s ease-out, background 0.3s;
 	width: 12px;
 	height: 12px;
-	background: #87cd33 !important;
+	background: var(--prm2) !important;
 	mix-blend-mode: difference;
 	z-index: 999;
 }
 .cursor.invert {
-	background: #fff;
+	background: var(--wht);
 }
 @media screen and (max-width: 767px) {
 	.cursor {
@@ -277,13 +301,13 @@ label {
 	transition: transform 0.1s ease-out, background 0.3s;
 	width: 60px;
 	height: 60px;
-	border: 1px solid #87cd33 !important;
+	border: 1px solid var(--prm2) !important;
 	transition: all 0.2s ease-out;
 	mix-blend-mode: difference;
 	z-index: 999;
 }
 .cursor-follower.invert {
-	border-color: #fff;
+	border-color: var(--wht);
 }
 @media screen and (max-width: 767px) {
 	.cursor-follower {
@@ -297,6 +321,7 @@ label {
 	border: none;
 }
 
+/*배경효과*/
 .bg-overlay {
 	position: fixed;
 	top: 0;
@@ -304,181 +329,9 @@ label {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background: #fff;
+	background: var(--wht);
 	transition: background-color 0.4s ease;
 	pointer-events: none;
-}
-
-.introContents {
-	width: 100%;
-	height: 100vh;
-	position: relative;
-	display: flex;
-	flex-flow: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	max-width: 1400px;
-	margin: 0 auto;
-}
-@media screen and (max-width: 1023px) {
-	.introContents {
-		margin-bottom: 100px;
-	}
-}
-.introContents > .desc {
-	width: 100%;
-	position: relative;
-	font-size: 20px;
-	font-weight: 300;
-	color: #333;
-	font-weight: 400;
-	text-align: center;
-	position: relative;
-	z-index: 99;
-	line-height: 160%;
-	font-family: "Pretendard GOV" !important;
-}
-@media screen and (max-width: 1023px) {
-	.introContents > .desc {
-		font-size: 18px;
-		word-break: auto-phrase;
-	}
-}
-.introContents > .desc > span {
-	display: block;
-	margin-bottom: 40px;
-	font-size: 40px;
-	font-weight: 400;
-	line-height: 150%;
-	color: #000;
-}
-@media screen and (max-width: 1023px) {
-	.introContents > .desc > span {
-		font-size: 24px;
-	}
-}
-.introContents > .desc > span .bold {
-	font-weight: 700;
-}
-.introContents > .desc > br {
-	display: block;
-}
-@media screen and (max-width: 767px) {
-	.introContents > .desc > br {
-		display: none;
-	}
-}
-.introContents > ul {
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	gap: 10px;
-	margin-top: 100px;
-}
-@media screen and (max-width: 1023px) {
-	.introContents > ul {
-		flex-flow: column;
-		width: 80%;
-		margin: 50px auto 100px;
-	}
-}
-.introContents > ul > li {
-	width: 100%;
-	border: 1px solid #dfdfdf;
-	padding: 40px;
-	background: #fff;
-}
-@media screen and (max-width: 767px) {
-	.introContents > ul > li {
-		padding: 20px;
-	}
-}
-.introContents > ul > li .title {
-	font-size: 20px;
-	font-weight: 600;
-	line-height: 150%;
-	margin-bottom: 20px;
-}
-.introContents > ul > li > ul {
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: center;
-}
-.introContents > ul > li > ul > li {
-	width: 25%;
-	text-align: center;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 150%;
-	letter-spacing: -0.04px;
-}
-.introContents > ul > li > ul > li > .imgFrame {
-	width: 100%;
-	height: 80px;
-	text-align: center;
-	display: flex;
-	align-items: center;
-	flex-flow: row nowrap;
-	justify-content: center;
-}
-.introContents > ul > li > ul > li > .imgFrame img {
-	display: inline;
-	width: 60px;
-}
-
-.allWrapper, .intro, .introContents, section {
-	background-color: transparent !important;
-}
-
-#bgCanvas {
-	position: fixed !important;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	max-width: 100%;
-	height: 100%;
-	z-index: -1 !important;
-	pointer-events: none;
-	display: block !important;
-}
-
-.cpright {
-	width: 100%;
-	position: relative;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 150%;
-	text-align: center;
-	padding-bottom: 100px;
-}
-@media screen and (max-width: 767px) {
-	.cpright {
-		padding-bottom: 50px;
-	}
-}
-
-.lastTxtBox {
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-}
-
-/*공통사용*/
-.df {
-	display: flex;
-}
-
-.aic {
-	align-items: center;
-}
-
-.jcc {
-	justify-content: center;
 }
 
 /*로딩*/
@@ -488,8 +341,8 @@ label {
 	height: 100%;
 	top: 50%;
 	left: 50%;
-	background: black;
-	color: white;
+	background: var(--b1);
+	color: var(--wht);
 	z-index: 9999;
 	transform: translate(-50%, -50%);
 }
@@ -505,6 +358,20 @@ label {
 .allWrapper {
 	overflow-x: hidden;
 	width: 100%;
+	/*동그라미 배경효과 캔버스*/
+}
+.allWrapper #bgCanvas {
+	position: fixed !important;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	max-width: 100%;
+	height: 100%;
+	z-index: -1 !important;
+	pointer-events: none;
+	display: block !important;
+}
+.allWrapper {
 	/*헤더*/
 }
 .allWrapper header {
@@ -513,26 +380,147 @@ label {
 .allWrapper header > div > h1 {
 	font-size: 70px;
 	text-align: center;
-	color: #000;
+	color: var(--b1);
 }
 @media screen and (max-width: 767px) {
 	.allWrapper header > div > h1 {
-		font-size: 50px;
+		font-size: 42px;
 		line-height: 100%;
 	}
 }
 .allWrapper header > div > h2 {
 	font-size: 28px;
 	text-align: center;
-	color: #000;
+	color: var(--b1);
 }
 @media screen and (max-width: 767px) {
 	.allWrapper header > div > h2 {
-		font-size: 20px;
+		font-size: 18px;
 		margin-top: 40px;
 	}
 }
-.allWrapper .pfTxtBox {
+.allWrapper .introContents {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+@media screen and (max-width: 1023px) {
+	.allWrapper .introContents {
+		margin-bottom: 100px;
+		padding: 0 20px;
+	}
+}
+.allWrapper .introContents > .desc {
+	width: 100%;
+	position: relative;
+	font-size: 20px;
+	font-weight: 300;
+	color: var(--b2);
+	font-weight: 400;
+	text-align: center;
+	position: relative;
+	z-index: 99;
+	line-height: 160%;
+	font-family: "Pretendard GOV" !important;
+}
+@media screen and (max-width: 1023px) {
+	.allWrapper .introContents > .desc {
+		font-size: 18px;
+		word-break: auto-phrase;
+	}
+}
+.allWrapper .introContents > .desc > span {
+	display: block;
+	margin-bottom: 40px;
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 150%;
+	color: var(--b1);
+}
+@media screen and (max-width: 1023px) {
+	.allWrapper .introContents > .desc > span {
+		font-size: 24px;
+	}
+}
+.allWrapper .introContents > .desc > span .bold {
+	font-weight: 700;
+}
+.allWrapper .introContents > .desc > br {
+	display: block;
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .introContents > .desc > br {
+		display: none;
+	}
+}
+.allWrapper .introContents > ul {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	gap: 10px;
+	margin-top: 100px;
+}
+@media screen and (max-width: 1023px) {
+	.allWrapper .introContents > ul {
+		flex-flow: column;
+		margin: 50px auto 100px;
+	}
+}
+.allWrapper .introContents > ul > li {
+	width: 100%;
+	border: 1px solid var(--lbg1);
+	padding: 40px;
+	background: var(--wht);
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .introContents > ul > li {
+		padding: 20px;
+	}
+}
+.allWrapper .introContents > ul > li .title {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 150%;
+	margin-bottom: 20px;
+}
+.allWrapper .introContents > ul > li > ul {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+.allWrapper .introContents > ul > li > ul > li {
+	width: 25%;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 150%;
+	letter-spacing: -0.04px;
+}
+.allWrapper .introContents > ul > li > ul > li > .imgFrame {
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+.allWrapper .introContents > ul > li > ul > li > .imgFrame img {
+	display: inline;
+	width: 60px;
+}
+
+/*중간 텍스트 영역*/
+.pfTxtBox {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -542,22 +530,37 @@ label {
 	width: 100%;
 	padding: 0 50px;
 }
-.allWrapper {
-	/*갤러리*/
+.pfTxtBox .textWrap {
+	position: relative;
+	z-index: 99;
 }
-.allWrapper .gallery {
+.pfTxtBox .textWrap .text {
+	display: flex;
+	font-size: clamp(30px, 8vw, 10rem);
+	line-height: 1;
+	font-weight: 900;
+	white-space: nowrap;
+}
+@media screen and (max-width: 767px) {
+	.pfTxtBox .textWrap .text:last-of-type {
+		margin-bottom: 20px;
+	}
+}
+
+/*프로젝트 목록 영역*/
+.galleryBox .gallery {
 	position: relative;
 	z-index: 99;
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery {
+	.galleryBox .gallery {
 		margin-top: 5px;
 		margin-bottom: 0;
 	}
 }
-.allWrapper .gallery > ul.wrapper {
+.galleryBox .gallery > ul.wrapper {
 	padding-left: 1rem;
 	list-style: none;
 	display: flex;
@@ -574,13 +577,14 @@ label {
 	transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery > ul.wrapper {
+	.galleryBox .gallery > ul.wrapper {
 		display: flex;
 		flex-flow: column;
 		gap: 5px;
+		padding: 0 20px;
 	}
 }
-.allWrapper .gallery > ul.wrapper li {
+.galleryBox .gallery > ul.wrapper li {
 	position: relative;
 	flex-shrink: 0;
 	width: clamp(300px, 40vw, 500px);
@@ -590,20 +594,25 @@ label {
 	transition: none !important;
 	will-change: transform, opacity;
 }
-.allWrapper .gallery > ul.wrapper li > a {
+@media screen and (max-width: 767px) {
+	.galleryBox .gallery > ul.wrapper li {
+		padding-right: 0;
+	}
+}
+.galleryBox .gallery > ul.wrapper li > a {
 	display: block;
-	background: #fff;
+	background: var(--wht);
 	position: relative;
 	width: clamp(300px, 40vw, 500px);
 	height: 350px;
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery > ul.wrapper li > a {
+	.galleryBox .gallery > ul.wrapper li > a {
 		width: 100% !important;
 		height: 150px;
 	}
 }
-.allWrapper .gallery > ul.wrapper li > a img {
+.galleryBox .gallery > ul.wrapper li > a img {
 	width: max-content;
 	position: absolute;
 	top: 50%;
@@ -611,91 +620,96 @@ label {
 	transform: translate(-50%, -50%);
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery > ul.wrapper li > a img {
+	.galleryBox .gallery > ul.wrapper li > a img {
 		width: 200px;
 	}
 }
-.allWrapper .gallery > ul.wrapper li::before {
+.galleryBox .gallery > ul.wrapper li::before {
 	display: none;
 }
-.allWrapper .gallery > ul.wrapper li:hover::before {
+.galleryBox .gallery > ul.wrapper li:hover::before {
 	content: "";
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
 }
-.allWrapper .gallery > ul.wrapper li::after {
+.galleryBox .gallery > ul.wrapper li::after {
 	content: "";
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #000;
+	background: var(--b1);
 	transform-origin: right;
 	transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery > ul.wrapper li::after {
+	.galleryBox .gallery > ul.wrapper li::after {
 		display: none;
 	}
 }
-.allWrapper .gallery > ul.wrapper li.reveal {
+.galleryBox .gallery > ul.wrapper li.reveal {
 	opacity: 1;
 	transform: translate3d(0, 0, 0) !important;
 }
-.allWrapper .gallery > ul.wrapper li.reveal::after {
+.galleryBox .gallery > ul.wrapper li.reveal::after {
 	transform: scaleX(0);
 	transition: 0.4s;
 }
-.allWrapper .gallery > ul.wrapper li.nfa img {
+.galleryBox .gallery > ul.wrapper li.nfa img {
 	width: 200px;
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery > ul.wrapper li {
+	.galleryBox .gallery > ul.wrapper li {
 		width: 100% !important;
 	}
 }
-.allWrapper .gallery:not(.last) {
+.galleryBox .gallery:not(.last) {
 	padding-bottom: 1rem;
 }
 @media screen and (max-width: 1023px) {
-	.allWrapper .gallery:not(.last) {
+	.galleryBox .gallery:not(.last) {
 		padding-bottom: 0;
 	}
 }
-.allWrapper .textWrap {
+
+.lastTxtBox {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+.lastTxtBox .textWrap {
 	position: relative;
 	z-index: 99;
 }
-.allWrapper .textWrap .text {
+.lastTxtBox .textWrap .text {
 	display: flex;
-	font-size: clamp(3rem, 8vw, 10rem);
+	font-size: clamp(30px, 8vw, 10rem);
 	line-height: 1;
 	font-weight: 900;
 	white-space: nowrap;
 }
 @media screen and (max-width: 767px) {
-	.allWrapper .textWrap .text:last-of-type {
+	.lastTxtBox .textWrap .text:last-of-type {
 		margin-bottom: 20px;
 	}
 }
 
-a, a:visited {
-	color: #4e9815;
-	text-decoration: none;
+.cpright {
+	width: 100%;
+	position: relative;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 150%;
+	text-align: center;
+	padding-bottom: 100px;
 }
-
-.circle {
-	position: absolute;
-	top: -1000px;
-	right: 300px;
-	width: 20px;
-	height: 20px;
-	border-radius: 40%;
-	opacity: 0;
-	margin: -19px auto;
-	transition: transform 1s cubic-bezier(0.14, 0.15, 0.13, 0.99);
-	z-index: 9;
+@media screen and (max-width: 767px) {
+	.cpright {
+		padding-bottom: 50px;
+	}
 }
 /*# sourceMappingURL=../maps/style.css.map */
