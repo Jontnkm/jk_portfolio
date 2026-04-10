@@ -402,7 +402,7 @@ a, a:visited {
 }
 .allWrapper header .scrInfo {
 	position: absolute;
-	bottom: 50px;
+	bottom: 100px;
 	left: 50%;
 	transform: translateX(-50%);
 	transition: all 0.6s ease-in-out !important;
