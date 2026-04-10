@@ -244,6 +244,11 @@ label {
 	--bg8: #E6E8EC;
 }
 
+[data-aos] {
+	position: relative;
+	z-index: 1; /* 커서(10000)보다 현저히 낮은 값 유지 */
+}
+
 .cursor {
 	position: fixed;
 	border-radius: 50%;
@@ -252,8 +257,9 @@ label {
 	transition: transform 0.1s ease-out, background 0.3s;
 	width: 12px;
 	height: 12px;
-	background: #87cd33;
+	background: #87cd33 !important;
 	mix-blend-mode: difference;
+	z-index: 999;
 }
 .cursor.invert {
 	background: #fff;
@@ -272,9 +278,10 @@ label {
 	transition: transform 0.1s ease-out, background 0.3s;
 	width: 60px;
 	height: 60px;
-	border: 1px solid #87cd33;
+	border: 1px solid #87cd33 !important;
 	transition: all 0.2s ease-out;
 	mix-blend-mode: difference;
+	z-index: 999;
 }
 .cursor-follower.invert {
 	border-color: #fff;
@@ -302,6 +309,11 @@ label {
 	max-width: 1400px;
 	margin: 0 auto;
 }
+@media screen and (max-width: 1023px) {
+	.introContents {
+		margin-bottom: 100px;
+	}
+}
 .introContents > .desc {
 	width: 100%;
 	position: relative;
@@ -315,7 +327,7 @@ label {
 	line-height: 160%;
 	font-family: "Pretendard GOV" !important;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.introContents > .desc {
 		font-size: 18px;
 		word-break: auto-phrase;
@@ -329,7 +341,7 @@ label {
 	line-height: 150%;
 	color: #000;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.introContents > .desc > span {
 		font-size: 24px;
 	}
@@ -351,27 +363,60 @@ label {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	gap: 40px;
+	gap: 10px;
 	margin-top: 100px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.introContents > ul {
-		margin-top: 60px;
+		flex-flow: column;
+		width: 80%;
+		margin: 50px auto 100px;
 	}
 }
 .introContents > ul > li {
 	width: 100%;
+	border: 1px solid #dfdfdf;
+	padding: 40px;
+	background: #fff;
+}
+.introContents > ul > li .title {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 150%;
+	margin-bottom: 20px;
+}
+.introContents > ul > li > ul {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+.introContents > ul > li > ul > li {
+	width: 25%;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 150%;
+	letter-spacing: -0.04px;
+}
+.introContents > ul > li > ul > li > .imgFrame {
+	width: 100%;
+	height: 80px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+.introContents > ul > li > ul > li > .imgFrame img {
+	display: inline;
+	width: 60px;
 }
 
-/* 모든 섹션의 배경을 투명하게 해서 캔버스가 투과되게 합니다 */
-.allWrapper,
-.intro,
-.introContents,
-section {
+.allWrapper, .intro, .introContents, section {
 	background-color: transparent !important;
 }
 
-/* 캔버스는 맨 뒤에 고정 */
 #bgCanvas {
 	position: fixed !important;
 	top: 0;
@@ -391,6 +436,12 @@ section {
 	font-weight: 600;
 	line-height: 150%;
 	text-align: center;
+	padding-bottom: 100px;
+}
+@media screen and (max-width: 767px) {
+	.cpright {
+		padding-bottom: 50px;
+	}
 }
 
 .lastTxtBox {
@@ -446,6 +497,7 @@ section {
 .allWrapper header > div > h1 {
 	font-size: 70px;
 	text-align: center;
+	color: #000;
 }
 @media screen and (max-width: 767px) {
 	.allWrapper header > div > h1 {
@@ -456,12 +508,23 @@ section {
 .allWrapper header > div > h2 {
 	font-size: 28px;
 	text-align: center;
+	color: #000;
 }
 @media screen and (max-width: 767px) {
 	.allWrapper header > div > h2 {
 		font-size: 20px;
 		margin-top: 40px;
 	}
+}
+.allWrapper .pfTxtBox {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 2500px;
+	margin: 0 auto 50px;
+	width: 100%;
+	padding: 0 50px;
 }
 .allWrapper {
 	/*갤러리*/
@@ -472,7 +535,7 @@ section {
 	margin-top: 50px;
 	margin-bottom: 100px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery {
 		margin-top: 5px;
 		margin-bottom: 0;
@@ -484,9 +547,17 @@ section {
 	display: flex;
 	gap: 50px;
 	opacity: 1 !important;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 2500px;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 50px;
 	transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery > ul.wrapper {
 		display: flex;
 		flex-flow: column;
@@ -510,7 +581,7 @@ section {
 	width: clamp(300px, 40vw, 500px);
 	height: 350px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery > ul.wrapper li > a {
 		width: 100% !important;
 		height: 150px;
@@ -523,7 +594,7 @@ section {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery > ul.wrapper li > a img {
 		width: 200px;
 	}
@@ -548,7 +619,7 @@ section {
 	transform-origin: right;
 	transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery > ul.wrapper li::after {
 		display: none;
 	}
@@ -564,7 +635,7 @@ section {
 .allWrapper .gallery > ul.wrapper li.nfa img {
 	width: 200px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery > ul.wrapper li {
 		width: 100% !important;
 	}
@@ -572,7 +643,7 @@ section {
 .allWrapper .gallery:not(.last) {
 	padding-bottom: 1rem;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
 	.allWrapper .gallery:not(.last) {
 		padding-bottom: 0;
 	}

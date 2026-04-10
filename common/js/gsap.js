@@ -39,7 +39,7 @@ function draw(progress = 0) {
     if (!ctx || !canvas) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    const startOffset = 0.15; 
+    const startOffset = 0.06; 
     const currentProgress = progress + startOffset;
 
     circles.forEach((c) => {
@@ -60,7 +60,7 @@ function draw(progress = 0) {
         
         ctx.globalAlpha = appearance * 0.8;
         ctx.strokeStyle = c.color; 
-        ctx.lineWidth = 0.2;
+        ctx.lineWidth = 0.1;
         
         ctx.beginPath();
         ctx.arc(0, 0, 1.2, 0, Math.PI * 2); 
@@ -85,14 +85,21 @@ function resize() {
 --------------------------------------------------------------*/
 const initBgColorChange = () => {
     const scrollThemes = [
-        { trigger: ".intro", bgColor: "#ffffff", textColor: "#000000" },
-        { trigger: ".start", bgColor: "#1a1a1a", textColor: "#ffffff" },
-        { trigger: ".end", bgColor: "#87cd33", textColor: "#000000" }
+        // 1. 흰색 배경 -> 검정 커서
+        { trigger: ".intro", bgColor: "#ffffff", textColor: "#000000", cursorColor: "#000000" },
+        // 2. 검정 배경 -> 흰색 커서
+        { trigger: ".start", bgColor: "#1a1a1a", textColor: "#ffffff", cursorColor: "#ffffff" },
+        // 3. 연두 배경 -> 검정 커서 (대비 확보)
+        { trigger: ".end", bgColor: "#87cd33", textColor: "#000000", cursorColor: "#000000" }
     ];
 
     const changeTheme = (theme) => {
         gsap.to("body", { backgroundColor: theme.bgColor, duration: 0.3 });
         gsap.to(".wrapper.text", { color: theme.textColor, duration: 0.3 });
+        
+        // [핵심 추가] 테마에 맞는 커서 색상으로 부드럽게 변경
+        gsap.to(".cursor", { backgroundColor: theme.cursorColor, duration: 0.3 });
+        gsap.to(".cursor-follower", { borderColor: theme.cursorColor, duration: 0.3 });
     };
 
     scrollThemes.forEach((theme, index) => {
@@ -152,19 +159,21 @@ const showDemo = () => {
                 const txt = w.textContent;
                 // [1. PC 환경] 기존 수치 그대로 유지하여 역동성 확보
                 if (isDesktop) {
-                    if (txt.includes("Project Archive")) return winW * -0.2;
-                    if (txt.includes("Digital Experiences")) return winW * 0.2;
-                    if (txt.includes("Crafting Principled")) return winW * 0;
-                    if (txt.includes("UI through Technical")) return winW * -0.3;
+                    if (txt.includes("Project Archive")) return winW * -0.8;
+                    if (txt.includes("Digital Experiences")) return winW * 0.8;
+                    if (txt.includes("Crafting Principled")) return winW * -0.5;
+                    if (txt.includes("UI through Technical")) return winW * 0.3;
                     if (txt.includes("Integrity and User-")) return winW * -0.2;
-                    if (txt.includes("Centric Design")) return winW * -0.5;
-                    return (index % 2) ? winW : (w.scrollWidth * -1);
+                    if (txt.includes("Centric Design")) return winW * 0.5;
+                    // return (index % 2) ? winW : (w.scrollWidth * -1);
+                    const gap = winW * 0.4; 
+                    return (index % 2) ? gap : -gap;
                 } 
                 // [2. 모바일 환경] 방향(지그재그)은 유지하되 수치는 화면 안으로 제한
                 else {
                     // 홀수/짝수 인덱스에 따라 왼쪽(-), 오른쪽(+) 번갈아가며 시작
                     const moveDist = winW * 0.6; // 화면 너비의 60% 정도만 밖에서 시작
-                    if (txt.includes("Project Archive")) return winW * 0.1;
+                    if (txt.includes("Project Archive")) return winW * -0.1;
                     if (txt.includes("Digital Experiences")) return winW * -0.1;
                     if (txt.includes("Crafting Principled")) return winW * 0.1;
                     if (txt.includes("UI through Technical")) return winW * -0.1;
@@ -179,12 +188,13 @@ const showDemo = () => {
                 // [1. PC 환경] 기존 목적지 유지
                 if (isDesktop) {
                     if (txt.includes("Project Archive")) return winW * 0.1;
-                    if (txt.includes("Digital Experiences")) return winW * 0.1;
-                    if (txt.includes("Crafting Principled")) return winW * 0.1;
-                    if (txt.includes("UI through Technical")) return winW * 0.1;
+                    if (txt.includes("Digital Experiences")) return winW * -0.3;
+                    if (txt.includes("Crafting Principled")) return winW * -0.1;
+                    if (txt.includes("UI through Technical")) return winW * 0;
                     if (txt.includes("Integrity and User-")) return winW * -0.05;
-                    if (txt.includes("Centric Design")) return winW * 0.4;
-                    return (index % 2) ? (w.scrollWidth - winW + 600) * -1 : 600;
+                    if (txt.includes("Centric Design")) return winW * 0;
+                    const offset = winW * 0.15; // 화면 너비의 10%만큼 더 이동해서 멈춤
+                    return (index % 2) ? -offset : offset;
                 } 
                 // [2. 모바일 환경] 목적지는 거의 중앙(0) 근처로 고정하여 화면 이탈 방지
                 else {
@@ -195,9 +205,9 @@ const showDemo = () => {
             // 섹션별 텍스트 애니메이션 부분 수정
             gsap.fromTo(w, { 
                 x: xStart, 
-                opacity: 0, 
+                opacity: 1, 
                 // [수정] 모바일일 때는 뒤틀림(skewX)을 0으로 설정
-                skewX: isDesktop ? -40 : 0 
+                skewX: isDesktop ? -10 : 0 
             }, {
                 x: xEnd,
                 opacity: 1,
