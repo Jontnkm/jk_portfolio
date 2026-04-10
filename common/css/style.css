@@ -431,7 +431,7 @@ a, a:visited {
 @media screen and (max-width: 1023px) {
 	.allWrapper .introContents > .desc {
 		font-size: 18px;
-		word-break: auto-phrase;
+		word-break: break-word;
 	}
 }
 .allWrapper .introContents > .desc > span {
@@ -449,6 +449,16 @@ a, a:visited {
 }
 .allWrapper .introContents > .desc > span .bold {
 	font-weight: 700;
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .introContents > .desc > span > br {
+		display: none;
+	}
+}
+@media screen and (max-width: 767px) {
+	.allWrapper .introContents > .desc > span {
+		word-break: auto-phrase;
+	}
 }
 .allWrapper .introContents > .desc > br {
 	display: block;
@@ -528,6 +538,11 @@ a, a:visited {
 	margin: 200px auto 50px;
 	width: 100%;
 	padding: 0 50px;
+}
+@media screen and (max-width: 767px) {
+	.pfTxtBox {
+		margin: 120px auto 50px;
+	}
 }
 .pfTxtBox .textWrap {
 	position: relative;
